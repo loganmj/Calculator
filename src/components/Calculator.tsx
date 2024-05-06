@@ -30,36 +30,34 @@ const Calculator = () => {
     clearDisplay();
   };
 
-  // Deletes a digit from the active operand
+  // Deletes a digit from the display text.
   const handleDeleteButton = () => {
-    const tempValue: number = Math.floor(firstOperand / 10);
-    setFirstOperand(tempValue);
-    displayValue(tempValue);
-  };
-
-  // Handles the clicking of a number button
-  const handleNumberButton = (text: string) => {
-    const inputValue: number = parseInt(text);
-    let tempValue: number = 0;
-
-    // DEBUG
-    console.log(`Button text: ${text}`);
-    console.log(`Converted value: ${inputValue}`);
-    console.log(`Current first operand: ${firstOperand}`);
-
-    // If the first operand is currently zero, set it directly as the input value.
-    // Otherwise, add the input value as a new digit to the end of the first operand.
-    if (firstOperand === 0) {
-      tempValue = inputValue;
-    } else {
-      tempValue = firstOperand * 10 + inputValue;
+    // If the string is only one digit, replace it with the default value
+    // Otherwise, remove a digit from the string
+    if (displayText.length <= 1) {
+      setDisplayText(DEFAULT_DISPLAY_DATA);
+      return;
     }
 
-    // DEBUG
-    console.log(`New first operand: ${tempValue}`);
+    let tempText = displayText;
+    setDisplayText(tempText.slice(0, -1));
+  };
 
-    setFirstOperand(tempValue);
-    displayValue(tempValue);
+  // Updates the display text with the value from the
+  // number button.
+  const handleNumberButton = (valueText: string) => {
+    let tempText = "";
+
+    // If the display text is currently the default, replace it directly with the input value.
+    // Otherwise, add the input value as a new digit to the end of the display text.
+    if (displayText === "0") {
+      tempText = valueText;
+    } else {
+      tempText = `${displayText}${valueText}`;
+    }
+
+    // Display the new text value
+    setDisplayText(tempText);
   };
 
   //#endregion
