@@ -157,9 +157,18 @@ const Calculator = () => {
           </div>
         </div>
         <div id="debug-data">
-          <label id="first-operand">{firstOperand}</label>
-          <label id="operator">{operator}</label>
-          <label id="second-operand">{secondOperand}</label>
+          <div>
+            <label>First Operand: </label>
+            <label>{firstOperand}</label>
+          </div>
+          <div>
+            <label>Operator: </label>
+            <label>{operator}</label>
+          </div>
+          <div>
+            <label>Second Operand: </label>
+            <label>{secondOperand}</label>
+          </div>
         </div>
       </div>
     </>
