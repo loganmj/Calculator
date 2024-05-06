@@ -76,11 +76,6 @@ const Calculator = () => {
     setDisplayText(DEFAULT_DISPLAY_DATA);
   };
 
-  // Converts a numeric value to a string and displays it.
-  const displayValue = (value: number) => {
-    setDisplayText(`${value}`);
-  };
-
   //#endregion
 
   return (
