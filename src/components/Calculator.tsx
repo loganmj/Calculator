@@ -15,10 +15,8 @@ const Calculator = () => {
   //#region State Properties
 
   const [displayText, setDisplayText] = useState("0");
-  const [firstOperand, setFirstOperand] = useState(0);
+  const [operand, setOperand] = useState(0);
   const [operator, setOperator] = useState("");
-  const [secondOperand, setSecondOperand] = useState(0);
-  const [editingSecondOperand, setEditingSecondOperand] = useState(false);
 
   //#endregion
 
@@ -71,24 +69,39 @@ const Calculator = () => {
   /**
    * Handles the addition operator button press.
    */
-  const handlePlusButton = () => {
-    // TODO: Parse the display text
+  const handleOperatorButton = (operatorText: string) => {
+    // Parse the display text
     const convertedValue = parseInt(displayText);
 
-    // TODO: Save the operand value
-    if (editingSecondOperand) {
-      setSecondOperand(convertedValue);
+    // Get the operator value
+    const tempOperator = operatorText;
+
+    // DEBUG
+    console.log(`Operator pressed: ${tempOperator}`);
+
+    // Set the new values
+    const cumulativeResult = getResult(operand, operator, convertedValue);
+    setOperand(cumulativeResult);
+    setOperator(tempOperator);
+
+    /*
+
+    // TODO: If no operator has been selected yet, just save the operand and the operator values
+    // And clear the display
+    // If an operator was already active, calculate the result, save the result as the operand, then
+    // grab the new active operator
+    if (operator === DEFAULT_OPERATOR_DATA) {
+      setOperator(tempOperator);
+      setOperand(convertedValue);
     } else {
-      setFirstOperand(convertedValue);
+      const cumulativeResult = getResult(operand, operator, convertedValue);
+      setOperand(cumulativeResult);
+      setOperator(tempOperator);
     }
 
-    // TODO: Set the operator value to '+'
-    setOperator("+");
+    */
 
-    // TODO: Switch the active operand
-    setEditingSecondOperand(!editingSecondOperand);
-
-    // TODO: Clear the display text
+    // Clear the display text
     clearDisplay();
   };
 
@@ -100,10 +113,8 @@ const Calculator = () => {
    * Sets all operand data to default values
    */
   const clearOperandData = () => {
-    setFirstOperand(DEFAULT_OPERAND_DATA);
+    setOperand(DEFAULT_OPERAND_DATA);
     setOperator(DEFAULT_OPERATOR_DATA);
-    setSecondOperand(DEFAULT_OPERAND_DATA);
-    setEditingSecondOperand(false);
   };
 
   /**
@@ -111,6 +122,28 @@ const Calculator = () => {
    */
   const clearDisplay = () => {
     setDisplayText(DEFAULT_DISPLAY_DATA);
+  };
+
+  /**
+   * Gets the result of the current calculation,
+   * using the operand and operator data.
+   */
+  const getResult = (
+    value1: number,
+    operatorValue: string,
+    value2: number
+  ): number => {
+    console.log(`Calculating ${value1} ${operatorValue} ${value2} ...`);
+
+    switch (operatorValue) {
+      case "+":
+        return value1 + value2;
+      default:
+        // Return the second value
+        // This makes the logic for the operator button handle easier
+        // May not be strictly correct?
+        return value2;
+    }
   };
 
   //#endregion
@@ -179,7 +212,7 @@ const Calculator = () => {
             ></CalculatorButton>
             <CalculatorButton
               text="+"
-              onClick={handlePlusButton}
+              onClick={handleOperatorButton}
             ></CalculatorButton>
           </div>
           <div className="button-row">
@@ -189,25 +222,20 @@ const Calculator = () => {
               onClick={handleNumberButton}
             ></CalculatorButton>
             <CalculatorButton text="." onClick={() => {}}></CalculatorButton>
-            <CalculatorButton text="=" onClick={() => {}}></CalculatorButton>
+            <CalculatorButton
+              text="="
+              onClick={handleOperatorButton}
+            ></CalculatorButton>
           </div>
         </div>
         <div id="debug-data">
           <div>
-            <label>First Operand: </label>
-            <label>{firstOperand}</label>
+            <label>Operand: </label>
+            <label>{operand}</label>
           </div>
           <div>
             <label>Operator: </label>
             <label>{operator}</label>
-          </div>
-          <div>
-            <label>Second Operand: </label>
-            <label>{secondOperand}</label>
-          </div>
-          <div>
-            <label>Editi Second Operand: </label>
-            <label>{editingSecondOperand.toString()}</label>
           </div>
         </div>
       </div>
