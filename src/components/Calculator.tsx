@@ -30,8 +30,9 @@ const Calculator = () => {
 
   // Deletes a digit from the active operand
   const handleDeleteButton = () => {
-    const tempText = displayText;
-    setDisplayText(tempText.slice(0, -1));
+    const tempValue: number = Math.floor(firstOperand / 10);
+    setFirstOperand(tempValue);
+    displayValue(tempValue);
   };
 
   // Handles the clicking of a number button
