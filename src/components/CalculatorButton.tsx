@@ -1,3 +1,5 @@
+import "./CalculatorButton.css";
+
 interface Props {
   text: string;
   onClick: () => void;
@@ -10,7 +12,9 @@ const CalculatorButton = ({ text, onClick }: Props) => {
 
   return (
     <>
-      <button onClick={handleButtonClick}>{text}</button>
+      <button id="calc-button" onClick={handleButtonClick}>
+        {text}
+      </button>
     </>
   );
 };

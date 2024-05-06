@@ -1,3 +1,5 @@
+import "./CalculatorDisplay.css";
+
 interface Props {
   displayText: string;
 }
@@ -5,7 +7,7 @@ interface Props {
 const CalculatorDisplay = ({ displayText }: Props) => {
   return (
     <>
-      <label id="display">{displayText}</label>
+      <input id="display">{displayText}</input>
     </>
   );
 };
