@@ -68,6 +68,30 @@ const Calculator = () => {
     setDisplayText(tempText);
   };
 
+  /**
+   * Handles the addition operator button press.
+   */
+  const handlePlusButton = () => {
+    // TODO: Parse the display text
+    const convertedValue = parseInt(displayText);
+
+    // TODO: Save the operand value
+    if (editingSecondOperand) {
+      setSecondOperand(convertedValue);
+    } else {
+      setFirstOperand(convertedValue);
+    }
+
+    // TODO: Set the operator value to '+'
+    setOperator("+");
+
+    // TODO: Switch the active operand
+    setEditingSecondOperand(!editingSecondOperand);
+
+    // TODO: Clear the display text
+    clearDisplay();
+  };
+
   //#endregion
 
   //#region Functions
@@ -152,7 +176,10 @@ const Calculator = () => {
               text="3"
               onClick={handleNumberButton}
             ></CalculatorButton>
-            <CalculatorButton text="+" onClick={() => {}}></CalculatorButton>
+            <CalculatorButton
+              text="+"
+              onClick={handlePlusButton}
+            ></CalculatorButton>
           </div>
           <div className="button-row">
             <CalculatorButton text="+/-" onClick={() => {}}></CalculatorButton>
@@ -176,6 +203,10 @@ const Calculator = () => {
           <div>
             <label>Second Operand: </label>
             <label>{secondOperand}</label>
+          </div>
+          <div>
+            <label>Editi Second Operand: </label>
+            <label>{editingSecondOperand}</label>
           </div>
         </div>
       </div>
