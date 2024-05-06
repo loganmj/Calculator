@@ -7,7 +7,7 @@ interface Props {
 const CalculatorDisplay = ({ displayText }: Props) => {
   return (
     <>
-      <input id="display">{displayText}</input>
+      <h3 id="display">{displayText}</h3>
     </>
   );
 };

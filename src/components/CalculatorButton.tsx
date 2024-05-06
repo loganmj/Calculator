@@ -2,12 +2,12 @@ import "./CalculatorButton.css";
 
 interface Props {
   text: string;
-  onClick: () => void;
+  onClick: (text: string) => void;
 }
 
 const CalculatorButton = ({ text, onClick }: Props) => {
   const handleButtonClick = () => {
-    onClick();
+    onClick(text);
   };
 
   return (
