@@ -24,13 +24,17 @@ const Calculator = () => {
 
   //#region Event Handlers
 
-  // Clears all variables and the display
+  /**
+   * Clears all variables and the display
+   */
   const handleClearButton = () => {
     clearOperandData();
     clearDisplay();
   };
 
-  // Deletes a digit from the display text.
+  /**
+   * Deletes a digit from the display text.
+   */
   const handleDeleteButton = () => {
     // If the string is only one digit, replace it with the default value
     // Otherwise, remove a digit from the string
@@ -43,8 +47,12 @@ const Calculator = () => {
     setDisplayText(tempText.slice(0, -1));
   };
 
-  // Updates the display text with the value from the
-  // number button.
+  /**
+   * Updates the display text with the value from the
+   * number button.
+   *
+   * @param valueText - The string value taken from the number button.
+   */
   const handleNumberButton = (valueText: string) => {
     let tempText = "";
 
@@ -64,19 +72,25 @@ const Calculator = () => {
 
   //#region Functions
 
-  // Sets all operand data to default values
+  /**
+   * Sets all operand data to default values
+   */
   const clearOperandData = () => {
     setFirstOperand(DEFAULT_OPERAND_DATA);
     setOperator(DEFAULT_OPERATOR_DATA);
     setSecondOperand(DEFAULT_OPERAND_DATA);
   };
 
-  // Sets display data to the default value
+  /**
+   * Sets display data to the default value
+   */
   const clearDisplay = () => {
     setDisplayText(DEFAULT_DISPLAY_DATA);
   };
 
   //#endregion
+
+  //#region Render
 
   return (
     <>
@@ -167,6 +181,8 @@ const Calculator = () => {
       </div>
     </>
   );
+
+  //#endregion
 };
 
 export default Calculator;
