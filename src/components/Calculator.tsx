@@ -103,6 +103,7 @@ const Calculator = () => {
     setFirstOperand(DEFAULT_OPERAND_DATA);
     setOperator(DEFAULT_OPERATOR_DATA);
     setSecondOperand(DEFAULT_OPERAND_DATA);
+    setEditingSecondOperand(false);
   };
 
   /**
@@ -206,7 +207,7 @@ const Calculator = () => {
           </div>
           <div>
             <label>Editi Second Operand: </label>
-            <label>{editingSecondOperand}</label>
+            <label>{editingSecondOperand.toString()}</label>
           </div>
         </div>
       </div>
