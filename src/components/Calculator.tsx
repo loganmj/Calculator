@@ -4,28 +4,29 @@ import { useState } from "react";
 import "./Calculator.css";
 
 const Calculator = () => {
+  //#region Constants
+
+  const DEFAULT_DISPLAY_DATA = "";
+  const DEFAULT_OPERAND_DATA = 0;
+  const DEFAULT_OPERATOR_DATA = "";
+
+  //#endregion
+
+  //#region State Properties
+
   const [displayText, setDisplayText] = useState("0");
   const [firstOperand, setFirstOperand] = useState(0);
+  const [operator, setOperator] = useState("");
+  const [secondOperand, setSecondOperand] = useState(0);
 
-  // TODO: Get the operator and second operand working
-  let operator: string = "";
-  let secondOperand: number = 0;
+  //#endregion
 
-  // TODO: Get the result working
-  let result: number = 0;
-
-  // Sets the display text to a numeric value
-  const displayValue = (value: number) => {
-    setDisplayText(`${value}`);
-  };
+  //#region Event Handlers
 
   // Clears all variables and the display
   const handleClearButton = () => {
-    setFirstOperand(0);
-    operator = "";
-    secondOperand = 0;
-    result = 0;
-    displayValue(0);
+    clearOperandData();
+    clearDisplay();
   };
 
   // Deletes a digit from the active operand
@@ -59,6 +60,29 @@ const Calculator = () => {
     setFirstOperand(tempValue);
     displayValue(tempValue);
   };
+
+  //#endregion
+
+  //#region Functions
+
+  // Sets all operand data to default values
+  const clearOperandData = () => {
+    setFirstOperand(DEFAULT_OPERAND_DATA);
+    setOperator(DEFAULT_OPERATOR_DATA);
+    setSecondOperand(DEFAULT_OPERAND_DATA);
+  };
+
+  // Sets display data to the default value
+  const clearDisplay = () => {
+    setDisplayText(DEFAULT_DISPLAY_DATA);
+  };
+
+  // Converts a numeric value to a string and displays it.
+  const displayValue = (value: number) => {
+    setDisplayText(`${value}`);
+  };
+
+  //#endregion
 
   return (
     <>
@@ -132,12 +156,11 @@ const Calculator = () => {
             <CalculatorButton text="=" onClick={() => {}}></CalculatorButton>
           </div>
         </div>
-      </div>
-      <div id="debug-data">
-        <label id="first-operand">{firstOperand}</label>
-        <label id="operator">{operator}</label>
-        <label id="second-operand">{secondOperand}</label>
-        <label id="result">{result}</label>
+        <div id="debug-data">
+          <label id="first-operand">{firstOperand}</label>
+          <label id="operator">{operator}</label>
+          <label id="second-operand">{secondOperand}</label>
+        </div>
       </div>
     </>
   );
