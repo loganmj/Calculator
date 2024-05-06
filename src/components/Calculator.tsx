@@ -6,7 +6,7 @@ import "./Calculator.css";
 const Calculator = () => {
   //#region Constants
 
-  const DEFAULT_DISPLAY_DATA = "";
+  const DEFAULT_DISPLAY_DATA = "0";
   const DEFAULT_OPERAND_DATA = 0;
   const DEFAULT_OPERATOR_DATA = "";
 
@@ -18,6 +18,7 @@ const Calculator = () => {
   const [firstOperand, setFirstOperand] = useState(0);
   const [operator, setOperator] = useState("");
   const [secondOperand, setSecondOperand] = useState(0);
+  const [editingSecondOperand, setEditingSecondOperand] = useState(false);
 
   //#endregion
 
